@@ -8,6 +8,7 @@ import Dashboard from "../layout/Dashboard";
 import Home from "../Page/Home/Home";
 import HouseOwnerDashboard from "../Page/HouseOwnerDashboard/HouseOwnerDashboard";
 import HouseRanterDashboard from "../Page/HouseRenterDashboard/HouseRanterDashboard";
+import HouseDataEdit from "../Page/HouseDataEdit/HouseDataEdit";
 
 
   const router = createBrowserRouter([
@@ -39,6 +40,11 @@ import HouseRanterDashboard from "../Page/HouseRenterDashboard/HouseRanterDashbo
         {
           path: '/dashboard/houseOwnerDashboard',
           element: <HouseOwnerDashboard></HouseOwnerDashboard>
+        },
+        {
+          path: '/dashboard/houseOwnerDashboard/:id',
+          element:<HouseDataEdit></HouseDataEdit>,
+          loader: ({params})=>fetch(`http://localhost:5000/updateHouseData/${params.id}`)
         },
         {
           path: '/dashboard/houseRenterDashboard',

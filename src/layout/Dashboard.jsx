@@ -6,7 +6,7 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="md:flex lg:flex max-w-[2520px]  mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
+    <div className="md:flex lg:flex max-w-[2520px]  mx-auto xl:px-10 md:px-10 sm:px-2 px-4">
       <div className=" lg:w-72   lg:min-h-screen bg-[#e61710]">
         <ul className="menu text-lg space-y-6 pt-20 ">
           <>
@@ -30,7 +30,7 @@ const Dashboard = () => {
         </ul>
       </div>
 
-      <div className="flex-1 py-10 pt-20 px-8">
+      <div className="flex-1 py-10 pt-20 px-3">
         <Outlet></Outlet>
       </div>
     </div>
