@@ -3,18 +3,17 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
- 
-    const { user } = useContext(AuthContext);
-  
-    const handleLogOut = ()=>{
-      window.location.reload(localStorage.removeItem('token'))
-    }
-  
+  const { user } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    window.location.reload(localStorage.removeItem("token"));
+  };
+
   const links = (
-    <div className=" flex flex-wrap gap-4  text-base items-center">
+    <div className=" flex flex-wrap gap-4 font-bold text-base items-center">
       <NavLink
         to={"/"}
-        className={({ isActive }) => (isActive ? " font-bold  " : "")}
+        className={({ isActive }) => (isActive ? " underline hover:scale-105  " : "")}
       >
         <button>Home</button>
       </NavLink>
@@ -63,27 +62,26 @@ const Navbar = () => {
         <div className="navbar-end flex gap-6">
           <ul className="menu menu-horizontal px-1 hidden lg:flex ">{links}</ul>
 
-            {user?.email ? (
-              <div className="flex gap-5 font-bold">
-                <NavLink
-                  to={"/dashboard"}
-                  className={({ isActive }) => (isActive ? " font-bold  " : "")}
-                >
-                  <button>Dashboard</button>
-                </NavLink>
-                <button onClick={handleLogOut}>LogOut</button>
-              </div>
-            ) : (
-              <div className="flex gap-5 font-bold">
-                <Link to={"/login"} className="">
-                  Login
-                </Link>
-                <Link to={"/register "} className="">
-                  Register
-                </Link>
-              </div>
-            )}
-          
+          {user?.email ? (
+            <div className="flex gap-5 font-bold">
+              <NavLink
+                to={"/dashboard"}
+                className={({ isActive }) => (isActive ? " font-bold  " : "")}
+              >
+                <button className="hover:scale-105">Dashboard</button>
+              </NavLink>
+              <button onClick={handleLogOut} className="hover:scale-105">LogOut</button>
+            </div>
+          ) : (
+            <div className="flex gap-5 font-bold">
+              <Link to={"/login"} className="">
+                Login
+              </Link>
+              <Link to={"/register "} className="">
+                Register
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

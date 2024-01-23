@@ -15,7 +15,7 @@ const Login = () => {
       console.log(res.data);
       if(res.data){
         localStorage.setItem('token',res.data)
-        window.location.reload(navigate('/'))
+        navigate('/dashboard')
       }
     })
     
@@ -56,7 +56,7 @@ const Login = () => {
           <input
             className="w-full py-1   cursor-pointer bg-blue-600 text-white "
             type="submit"
-            value="Register"
+            value="login"
           />
           <div className="py-1 text-center">
           <Link to='/register' className="hover:underline cursor-pointer   ">Need to set up an account?</Link>

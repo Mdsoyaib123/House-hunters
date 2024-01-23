@@ -9,6 +9,7 @@ import Home from "../Page/Home/Home";
 import HouseOwnerDashboard from "../Page/HouseOwnerDashboard/HouseOwnerDashboard";
 import HouseRanterDashboard from "../Page/HouseRenterDashboard/HouseRanterDashboard";
 import HouseDataEdit from "../Page/HouseDataEdit/HouseDataEdit";
+import HouseDetail from "../Page/HouseDetail/HouseDetail";
 
 
   const router = createBrowserRouter([
@@ -18,7 +19,13 @@ import HouseDataEdit from "../Page/HouseDataEdit/HouseDataEdit";
       children:[
         {
           path: '/',
-          element: <Home></Home>
+          element: <Home></Home>,
+          loader:()=>fetch('http://localhost:5000/houseData')
+        },
+        {
+          path:'/houseDetail/:id',
+          element: <HouseDetail></HouseDetail>,
+          loader: ({params})=>fetch(`http://localhost:5000/houseDetail/${params.id}`)
         }
       ]
     },
@@ -48,7 +55,8 @@ import HouseDataEdit from "../Page/HouseDataEdit/HouseDataEdit";
         },
         {
           path: '/dashboard/houseRenterDashboard',
-          element: <HouseRanterDashboard></HouseRanterDashboard>
+          element: <HouseRanterDashboard></HouseRanterDashboard>,
+          // loader: ()=> fetch('http://localhost:5000/bookingData')
         }
       ]
     }
