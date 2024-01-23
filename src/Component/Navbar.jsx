@@ -1,18 +1,23 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+ 
+    const { user } = useContext(AuthContext);
+  
+    const handleLogOut = ()=>{
+      window.location.reload(localStorage.removeItem('token'))
+    }
+  
   const links = (
     <div className=" flex flex-wrap gap-4  text-base items-center">
       <NavLink
         to={"/"}
-        className={({ isActive }) =>
-          isActive ? " font-bold  " : ""
-        }
+        className={({ isActive }) => (isActive ? " font-bold  " : "")}
       >
         <button>Home</button>
       </NavLink>
-     
     </div>
   );
 
@@ -46,7 +51,11 @@ const Navbar = () => {
           </div>
           <div>
             <Link to={"/"} className="">
-            <img className="w-24" src="https://i.postimg.cc/W1kk8NZg/logo.png" alt="" />
+              <img
+                className="w-24"
+                src="https://i.postimg.cc/W1kk8NZg/logo.png"
+                alt=""
+              />
             </Link>
           </div>
         </div>
@@ -54,18 +63,27 @@ const Navbar = () => {
         <div className="navbar-end flex gap-6">
           <ul className="menu menu-horizontal px-1 hidden lg:flex ">{links}</ul>
 
-          <Link
-            to={"/login"}
-            className=""
-          >
-            Login
-          </Link>
-          <Link
-            to={"/register "}
-            className=""
-          >
-            Register
-          </Link>
+            {user?.email ? (
+              <div className="flex gap-5 font-bold">
+                <NavLink
+                  to={"/dashboard"}
+                  className={({ isActive }) => (isActive ? " font-bold  " : "")}
+                >
+                  <button>Dashboard</button>
+                </NavLink>
+                <button onClick={handleLogOut}>LogOut</button>
+              </div>
+            ) : (
+              <div className="flex gap-5 font-bold">
+                <Link to={"/login"} className="">
+                  Login
+                </Link>
+                <Link to={"/register "} className="">
+                  Register
+                </Link>
+              </div>
+            )}
+          
         </div>
       </div>
     </div>
