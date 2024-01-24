@@ -8,7 +8,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
       const token=localStorage.getItem('token')
       const localToken = {token}
-      axios.post('http://localhost:5000/checkCurrentUser',localToken)
+      axios.post('https://house-hunter-server-eight-gamma.vercel.app/checkCurrentUser',localToken)
       .then(res=>{
         // console.log(res.data);
         setUser(res.data)

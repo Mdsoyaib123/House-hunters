@@ -12,7 +12,7 @@ const HouseRanterDashboard = () => {
   const { data:loader=[], refetch } = useQuery({
     queryKey: ["houseBookingData"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/bookingData");
+      const res = await axios.get("https://house-hunter-server-eight-gamma.vercel.app/bookingData");
       return res.data;
     },
   });
@@ -28,7 +28,7 @@ const HouseRanterDashboard = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`http://localhost:5000/bookingData/${id}`)
+            .delete(`https://house-hunter-server-eight-gamma.vercel.app/bookingData/${id}`)
             .then((res) => {
               console.log(res.data);
               refetch()
@@ -39,7 +39,7 @@ const HouseRanterDashboard = () => {
   };
   return (
     <div>
-        <h1 className="text-3xl font-bold text-center pb-10">House Booking Information </h1>
+        <h1 className="text-3xl font-bold text-center pb-10">House Booked Information </h1>
       <table className="table table-zebra">
         {/* head */}
         <thead>

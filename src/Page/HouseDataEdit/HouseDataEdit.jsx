@@ -41,7 +41,7 @@ const HouseDataEdit = () => {
     console.log(HouseData);
 
     axios
-      .put(`http://localhost:5000/houseDataEdit/${loader._id}`, HouseData)
+      .put(`https://house-hunter-server-eight-gamma.vercel.app/houseDataEdit/${loader._id}`, HouseData)
       .then((res) => {
         console.log(res.data);
         

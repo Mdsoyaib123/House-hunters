@@ -10,7 +10,7 @@ const Login = () => {
     const password = form.password.value;
     const loginTokenData = { email, password };
     
-    axios.post('http://localhost:5000/LoginToken',loginTokenData)
+    axios.post('https://house-hunter-server-eight-gamma.vercel.app/LoginToken',loginTokenData)
     .then(res=>{
       console.log(res.data);
       if(res.data){

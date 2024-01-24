@@ -4,20 +4,20 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-
+  // bg-[#e61710]
   return (
     <div className="md:flex lg:flex max-w-[2520px]  mx-auto xl:px-10 md:px-10 sm:px-2 px-4">
-      <div className=" lg:w-72   lg:min-h-screen bg-[#e61710]">
+      <div className=" lg:w-72   lg:min-h-screen bg-gray-600">
         <ul className="menu text-lg space-y-6 pt-20 ">
           <>
             {user?.role === "House Owner" ? (
               <li className="text-white">
-                <NavLink to="/dashBoard/houseOwnerDashboard">House owner dashboard </NavLink>
+                <NavLink to="/dashBoard/houseOwnerDashboard"> Dashboard </NavLink>
               </li>
             ) : (
               <li className="text-white">
                 <NavLink to="/dashBoard/houseRenterDashboard">
-                  House Renter dashboard 
+                   Dashboard 
                 </NavLink>
               </li>
             )}

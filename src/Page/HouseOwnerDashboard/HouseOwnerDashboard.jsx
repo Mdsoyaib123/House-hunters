@@ -10,7 +10,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { LuDelete } from "react-icons/lu";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 
@@ -18,11 +18,11 @@ const HouseOwnerDashboard = () => {
   const [date, setDate] = useState([]);
   const [modal, setModal] = useState(false);
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate()
   const { data, refetch } = useQuery({
     queryKey: ["houseData"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/houseData");
+      const res = await axios.get("https://house-hunter-server-eight-gamma.vercel.app/houseData");
       return res.data;
     },
   });
@@ -55,9 +55,11 @@ const HouseOwnerDashboard = () => {
       rentPerMonth,
       des,
     };
-    axios.post("http://localhost:5000/houseData", HouseData).then((res) => {
+    axios.post("https://house-hunter-server-eight-gamma.vercel.app/houseData", HouseData).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
+        toast.success('New house added successfully')
+        setModal(false)
         refetch();
       }
     });
@@ -74,7 +76,7 @@ const HouseOwnerDashboard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/houseDataDelete/${id}`)
+          .delete(`https://house-hunter-server-eight-gamma.vercel.app/houseDataDelete/${id}`)
           .then((res) => {
             console.log(res.data);
             refetch();

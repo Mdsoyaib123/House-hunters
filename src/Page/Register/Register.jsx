@@ -21,7 +21,7 @@ const Register = () => {
       email,
       password,
     };
-    axios.post("http://localhost:5000/users", userData)
+    axios.post("https://house-hunter-server-eight-gamma.vercel.app/users", userData)
     .then(function(res){
       
       if(res.data.message){
@@ -29,7 +29,7 @@ const Register = () => {
       }
       if (res.data.insertedId) {
       
-        axios.post("http://localhost:5000/jwt", tokenData).then((res) => {
+        axios.post("https://house-hunter-server-eight-gamma.vercel.app/jwt", tokenData).then((res) => {
           localStorage.setItem("token", res.data);
           window.location.reload(navigate('/dashboard'))
         });

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -7,11 +7,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const HouseDetail = () => {
+  const navigate = useNavigate()
   const [modal, setModal] = useState(false);
   const { user } = useContext(AuthContext);
   const loader = useLoaderData();
-
+  const [error, setError] = useState("");
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -29,10 +31,21 @@ const HouseDetail = () => {
       date,
     };
 
-    axios.post("http://localhost:5000/bookingData", bookingData).then((res) => {
-      console.log(res.data);
-      toast.success("House Booking Successfully");
-    });
+    axios
+      .post(
+        "https://house-hunter-server-eight-gamma.vercel.app/bookingData",
+        bookingData
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message) {
+          toast.error("You can not book house more than 2 ");
+        }
+        if (res.data.insertedId) {
+          toast.success("House Booking Successfully");
+          navigate('/')
+        }
+      });
   };
   return (
     <div className="lg:w-[1200px] py-8 mx-auto">
